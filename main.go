@@ -1,8 +1,8 @@
 package main
 
 import (
-	"booking-app/helper"
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -13,6 +13,8 @@ var conferenceName string = "Go Conference"
 var remainingTickets uint = 50
 var bookings = []string{} // <-- Used Slice here
 
+// Map
+
 func main() {
 	// Greet users
 	greetUsers()
@@ -22,7 +24,7 @@ func main() {
 		// validate user Input
 		// and export helper-->ValidateUserInput
 		firstName, lastName, email, userTickets := getUserInput()
-		isValidName, isValidEmail, isValidTickets := helper.ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
+		isValidName, isValidEmail, isValidTickets := ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
 		// Check if userTickets is greater than remainingTickets
 		if isValidName && isValidEmail && isValidTickets {
@@ -105,9 +107,13 @@ func getUserInput() (string, string, string, uint) {
 func bookTicket(userTickets uint, firstName string, lastName string, email string) {
 	remainingTickets = remainingTickets - userTickets
 
-	//Arrays and Slices --> Go!
-	// Arrays in Go have fixed size
-	// then we decide the type of data to be stored in the array
+	// Create users' map
+	var userData = make(map[string]string)
+	userData["FirstName"] = firstName
+	userData["LastName"] = lastName
+	userData["Email"] = email
+	userData["NumberOfTictkets"] = strconv.FormatUint(uint64(userTickets), 10)
+
 	bookings = append(bookings, firstName+" "+lastName)
 
 	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive an email confirmation at %v\n", firstName, lastName, userTickets, email)
