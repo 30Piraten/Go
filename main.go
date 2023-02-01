@@ -74,7 +74,7 @@ func getFirstName() []string {
 		var names = strings.Fields(booking)
 		firstNames = append(firstNames, names[0])
 	}
-	// Printing all bookings
+	// Printing all firstNames
 	return firstNames
 }
 
