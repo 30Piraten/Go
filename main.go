@@ -13,14 +13,10 @@ var remainingTickets uint = 50
 var bookings = []string{} // <-- Used Slice here
 
 func main() {
-	// Alternative syntax for creating a new variable
-	// You can declare the same syntax for contants
-	// conferenceName := "Conference 1"
-
 	// Greet users
 	greetUsers()
 
-	// Loop used here to get bookings sample
+	// Iterate to get bookings sample:
 	for {
 		// validate user Input
 		firstName, lastName, email, userTickets := getUserInput()
@@ -76,17 +72,6 @@ func getFirstName() []string {
 	}
 	// Printing all firstNames
 	return firstNames
-}
-
-// Function to validate user input
-// Input values in the first parenthesis,
-// and list of output[return] params outside braces
-func validateUserInput(firstName string, lastName string, email string, userTickets uint) (bool, bool, bool) {
-	isValidName := len(firstName) >= 3 && len(lastName) >= 3
-	isValidEmail := strings.Contains(email, "@")
-	isValidTickets := userTickets > 0 && userTickets <= remainingTickets
-
-	return isValidName, isValidEmail, isValidTickets
 }
 
 // Function to get User Input
