@@ -1,8 +1,8 @@
 package main
 
 import (
+	"booking-app/helper"
 	"fmt"
-	"helper/validateUserInput.go"
 	"strings"
 )
 
@@ -20,8 +20,9 @@ func main() {
 	// Iterate to get bookings sample:
 	for {
 		// validate user Input
+		// and export helper-->ValidateUserInput
 		firstName, lastName, email, userTickets := getUserInput()
-		isValidName, isValidEmail, isValidTickets := validateUserInput(firstName, lastName, email, userTickets)
+		isValidName, isValidEmail, isValidTickets := helper.ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
 		// Check if userTickets is greater than remainingTickets
 		if isValidName && isValidEmail && isValidTickets {
@@ -34,7 +35,7 @@ func main() {
 			firstNames := getFirstName()
 			fmt.Printf("These first names of bookings are %v\n", firstNames)
 
-			// Check if ticket is less
+			// Check if ticket is equal to zero
 			if remainingTickets == 0 {
 				// end program
 				fmt.Println("Our conference is booked out. Come back next year!")
